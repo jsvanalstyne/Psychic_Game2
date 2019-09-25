@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+<body>
+    <h1>The Psychic Game!</h1>
+    
+    <p id="game">Guess what letter I am thinking of</p>
+<p id="wins-text">Wins: </p>
+<p id="losses-text">Losses:</p>
+<p id="guessed-text">Letters guessed: </p>
+<p id="guessesleft-text">Remaining guesses:</p>
+<script type="text/javascript">
+    var wins= 0;
+    var losses= 0;
+    var guessesLeft= 8;
+    var computerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var lettersGuessed= [];
+    var computerGuess= computerLetter[Math.floor(Math.random()*computerLetter.length)];
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var lettersGuessedText = document.getElementById("guessed-text");
+    var guessesLeftText = document.getElementById("guessesleft-text");
+
+    var restart = function(){
+        guessesLeft= 8;
+        lettersGuessed= [];
+        var computerGuess= computerLetter[Math.floor(Math.random()*computerLetter.length)];
+    }
+    restart();
+    
+
+   
+    document.onkeyup = function(event){
+        var userGuess = event.key; 
+        var userLetter = userGuess.toLowerCase();
+        lettersGuessed.push(userLetter);  
+        
+        if(userLetter === computerGuess){
+            wins ++;
+            guessesLeft= 8;    
+            restart();      
+         }
+         else{
+             guessesLeft --;            
+         }
+         if (guessesLeft === 0){
+             alert("You lose!")
+             losses++;
+             guessesLeft=8;
+             restart();
+             }
+              
+        
+    
+winsText.textContent = "Wins: " + wins;
+lossesText.textContent = "Losses:" + losses;
+lettersGuessedText.textContent = "Letters Guessed: "+ lettersGuessed.join(',');
+guessesLeftText.textContent = "Guesses remaining: " + guessesLeft;
+    }
+    
+
+  
+
+
+
+
+        
+
+        
+        
+        </script>
+
+</body>
+</html>
