@@ -13,7 +13,7 @@
     function restart(){
         guessesLeft= 8;
         lettersGuessed= [];
-        var computerGuess= computerLetter[Math.floor(Math.random()*computerLetter.length)];
+        computerGuess= computerLetter[Math.floor(Math.random()*computerLetter.length)];
         console.log(computerGuess);
     }
     restart();
@@ -23,10 +23,11 @@
     document.onkeyup = function(event){
         var userGuess = event.key.toLowerCase();
         lettersGuessed.push(userGuess);  
-        
+        console.log(userGuess);
+        console.log(computerGuess);
+
         if(userGuess === computerGuess){
-           
-            wins ++; 
+          wins ++; 
             alert("You win!");
             restart();     
          }
